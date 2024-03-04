@@ -19,8 +19,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
       entities: ['dist/**/*.entity{.ts,.js}'],
+      migrations: ['dist/src/migrations/*{.ts,.js}'],
       synchronize: true,
-    })
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],

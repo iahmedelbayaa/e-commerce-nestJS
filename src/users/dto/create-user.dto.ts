@@ -1,7 +1,9 @@
-import { IsEmail, IsString, MinLength } from "class-validator";
+import { IsEmail, IsNumber, IsString, MinLength } from "class-validator";
 import { Roles } from "src/utility/user.enum";
 
 export class CreateUserDto {
+    @IsNumber()
+    readonly id: number;
 
     @IsString()
     readonly username: string;

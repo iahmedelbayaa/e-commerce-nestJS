@@ -11,9 +11,9 @@ export class AuthService {
     constructor(@InjectRepository(UserEntity)
     private userRepository: Repository<UserEntity>) { }
 
-    async signUp(createUserDto: CreateUserDto): Promise<void> {
+    async signUp(createUserDto: CreateUserDto): Promise<UserEntity> {
 
-        const { username, email, password } = createUserDto;
+        const { username, email, password , roles} = createUserDto;
 
         const salt = await bcrypt.genSalt();
         const hashedPassword = await bcrypt.hash(password, salt);
@@ -21,11 +21,13 @@ export class AuthService {
         const user = this.userRepository.create({
             username,
             email,
-            password: hashedPassword
+            password: hashedPassword,
+            roles
         });
 
         try {
-            await this.userRepository.save(user);
+            const newUser = await this.userRepository.save(user);
+            return newUser;
         } catch (error) {
             if (error.code === '23505') {
                 // duplicate username

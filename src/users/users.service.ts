@@ -3,34 +3,35 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from './entities/user.entity';
-import { UsersRepository } from './users.repository';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class UsersService {
 
   constructor(
-    @InjectRepository(UsersRepository)
-    private usersRepository: UsersRepository,
+    @InjectRepository(UserEntity)
+    private usersRepository: Repository<UserEntity>,
   ) {}
 
   
-  create(createUserDto: CreateUserDto) {
-    return this.usersRepository.createUser(createUserDto);
+  createUser(createUserDto: CreateUserDto) {
+    const newUser = this.usersRepository.create(createUserDto);
+    return this.usersRepository.save(newUser);
   }
 
-  findAll() {
-    return this.usersRepository.findAllUsers();
-  }
+  // findAll() {
+  //   return this.usersRepository.findAllUsers();
+  // }
 
-  findOne(id: number) {
-    return this.usersRepository.findUserById(id);
-  }
+  // findOne(id: number) {
+  //   return this.usersRepository.findUserById(id);
+  // }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return this.usersRepository.updateUser(id, updateUserDto);
-  }
+  // update(id: number, updateUserDto: UpdateUserDto) {
+  //   return this.usersRepository.updateUser(id, updateUserDto);
+  // }
 
-  remove(id: number) {
-    return this.usersRepository.delete(id);
-  }
+  // remove(id: number) {
+  //   return this.usersRepository.deleteUser(id);
+  // }
 }

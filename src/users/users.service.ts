@@ -14,23 +14,24 @@ export class UsersService {
   ) {}
 
   
-  create(createUserDto: CreateUserDto) {
-    return this.usersRepository.save(createUserDto);
+  createUser(createUserDto: CreateUserDto) {
+    const newUser = this.usersRepository.create(createUserDto);
+    return this.usersRepository.save(newUser);
   }
 
-  findAll() {
-    return this.usersRepository.find();
-  }
+  // findAll() {
+  //   return this.usersRepository.findAllUsers();
+  // }
 
-  findOne(id: number) {
-    return this.usersRepository.findOne({where :{id : id}});
-  }
+  // findOne(id: number) {
+  //   return this.usersRepository.findUserById(id);
+  // }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return this.usersRepository.update(id, updateUserDto);
-  }
+  // update(id: number, updateUserDto: UpdateUserDto) {
+  //   return this.usersRepository.updateUser(id, updateUserDto);
+  // }
 
-  remove(id: number) {
-    return this.usersRepository.delete(id);
-  }
+  // remove(id: number) {
+  //   return this.usersRepository.deleteUser(id);
+  // }
 }

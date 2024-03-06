@@ -1,8 +1,8 @@
-import { IsEmail, IsString, MinLength } from "class-validator";
+import { IsArray, IsEmail, IsNumber, IsString, MinLength } from "class-validator";
 import { Roles } from "src/utility/user.enum";
 
 export class CreateUserDto {
-
+   
     @IsString()
     readonly username: string;
 
@@ -14,5 +14,5 @@ export class CreateUserDto {
     readonly password: string;
 
     @IsString({ each: true })
-    readonly roles: Roles[];
+    readonly roles: Roles;
 }

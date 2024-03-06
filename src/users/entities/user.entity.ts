@@ -21,5 +21,5 @@ export class UserEntity {
         enum: Roles,
         default: Roles.USER
     })
-    roles: Roles[]
+    roles: Roles;
 }

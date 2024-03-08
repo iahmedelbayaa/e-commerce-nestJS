@@ -4,13 +4,13 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('users')
 export class UserEntity {
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn('uuid')
     id: number;
 
-    @Column()
+    @Column({ unique: true })
     username: string;
 
-    @Column()
+    @Column({ unique: true })
     email: string;
 
     @Column()

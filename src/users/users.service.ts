@@ -19,19 +19,19 @@ export class UsersService {
     return this.usersRepository.save(newUser);
   }
 
-  // findAll() {
-  //   return this.usersRepository.findAllUsers();
-  // }
+  findAll() {
+    return this.usersRepository.find();
+  }
 
-  // findOne(id: number) {
-  //   return this.usersRepository.findUserById(id);
-  // }
+  findOne(username: string) {
+    return this.usersRepository.findOne({where :{username : username}});
+  }
 
-  // update(id: number, updateUserDto: UpdateUserDto) {
-  //   return this.usersRepository.updateUser(id, updateUserDto);
-  // }
+  update(id: number, updateUserDto: UpdateUserDto) {
+    return this.usersRepository.update(id, updateUserDto);
+  }
 
-  // remove(id: number) {
-  //   return this.usersRepository.deleteUser(id);
-  // }
+  remove(id: number) {
+    return this.usersRepository.delete(id);
+  }
 }

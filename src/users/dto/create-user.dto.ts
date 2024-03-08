@@ -1,9 +1,11 @@
-import { IsArray, IsEmail, IsNumber, IsString, MinLength } from "class-validator";
+import { IsArray, IsEmail, IsNumber, IsString, Matches, MaxLength, MinLength } from "class-validator";
 import { Roles } from "src/utility/user.enum";
 
 export class CreateUserDto {
-   
+
     @IsString()
+    @MinLength(4)
+    @MaxLength(20)
     readonly username: string;
 
     @IsEmail()
@@ -11,6 +13,9 @@ export class CreateUserDto {
 
     @MinLength(8)
     @IsString()
+    @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
+        message: 'password is too weak',
+    })
     readonly password: string;
 
     @IsString({ each: true })

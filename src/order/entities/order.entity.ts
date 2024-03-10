@@ -14,6 +14,14 @@ export class OrderEntity {
     @Column()
     price: number;
 
+    @Column()
+    createdAt: Date;
+
+    @Column()
+    updatedAt: Date;
+
+
+
     //order => product relationship many to many
 
 }

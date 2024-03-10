@@ -1,5 +1,6 @@
+import { ProductEntity } from "src/product/entities/product.entity";
 import { Roles } from "src/users/utility/user.enum";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 
 
 @Entity('users')
@@ -22,4 +23,7 @@ export class UserEntity {
         default: Roles.USER
     })
     roles: Roles;
+
+    @ManyToMany((_type) => ProductEntity, (product) => product.users)
+    products: ProductEntity[];
 }

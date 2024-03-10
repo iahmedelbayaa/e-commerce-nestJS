@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { UserEntity } from "src/users/entities/user.entity";
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class ProductEntity {
@@ -48,5 +49,8 @@ export class ProductEntity {
 
     @Column()
     updatedAt: Date;
+
+    @ManyToMany((_type) => UserEntity, (user) => user.products)
+    users: UserEntity[];
 
 }

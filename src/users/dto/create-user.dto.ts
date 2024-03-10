@@ -1,5 +1,5 @@
-import { IsArray, IsEmail, IsNumber, IsString, Matches, MaxLength, MinLength } from "class-validator";
-import { Roles } from "src/utility/user.enum";
+import {  IsEmail, IsNumber, IsString, Matches, MaxLength, MinLength } from "class-validator";
+import { Roles } from "src/users/utility/user.enum";
 
 export class CreateUserDto {
 

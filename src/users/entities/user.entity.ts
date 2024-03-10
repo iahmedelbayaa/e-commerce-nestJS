@@ -1,4 +1,4 @@
-import { Roles } from "src/utility/user.enum";
+import { Roles } from "src/users/utility/user.enum";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 

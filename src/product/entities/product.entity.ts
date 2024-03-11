@@ -1,3 +1,4 @@
+import { CartEntity } from "src/cart/entities/cart.entity";
 import { OrderEntity } from "src/order/entities/order.entity";
 import { UserEntity } from "src/users/entities/user.entity";
 import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
@@ -58,5 +59,8 @@ export class ProductEntity {
     @ManyToMany((_type) => OrderEntity, (order) => order.products)
     orders: OrderEntity[];
 
+
+    @ManyToMany((_type) => CartEntity, (cart) => cart.products)
+    carts: CartEntity[];
 
 }

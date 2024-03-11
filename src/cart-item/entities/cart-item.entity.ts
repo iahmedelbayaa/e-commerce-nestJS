@@ -1,20 +1,20 @@
 import { Entity, Column, ManyToOne, JoinColumn } from 'typeorm';
 
-import { OrderEntity } from './order.entity';
+import { CartEntity } from '../../cart/entities/cart.entity';
 import { ProductEntity } from 'src/product/entities/product.entity';
 import { UserEntity } from 'src/users/entities/user.entity';
 
-@Entity('order_item')
-export class OrderItemEntity {
+@Entity('cart_item')
+export class CartItemEntity {
   @Column({ type: 'integer', nullable: false })
   quantity: number;
 
-  @ManyToOne(() => ProductEntity, product => product.orderItems)
+  @ManyToOne(() => ProductEntity, product => product.cartItems)
   product: ProductEntity;
 
-  @ManyToOne(() => UserEntity, user => user.orderItems)
+  @ManyToOne(() => UserEntity, user => user.cartItems)
   user: UserEntity;
 
-  @ManyToOne(() => OrderEntity, order => order.orderItems)
-  order: OrderEntity;
+  @ManyToOne(() => CartEntity, cart => cart.cartItems)
+  cart: CartEntity;
 }

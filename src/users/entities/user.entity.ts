@@ -1,6 +1,6 @@
-import { CartItemEntity } from "src/cart/entities/cart-item.entity";
+import { CartItemEntity } from "src/cart-item/entities/cart-item.entity";
 import { CartEntity } from "src/cart/entities/cart.entity";
-import { OrderItemEntity } from "src/order/entities/order-item.entity";
+import { OrderItemEntity } from "src/order-item/entities/order-item.entity";
 import { OrderEntity } from "src/order/entities/order.entity";
 import { ProductEntity } from "src/product/entities/product.entity";
 import { Roles } from "src/users/utility/user.enum";

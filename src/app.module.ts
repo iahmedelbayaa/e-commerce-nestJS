@@ -9,6 +9,9 @@ import { OrderModule } from './order/order.module';
 import { ProductModule } from './product/product.module';
 import { CategoryModule } from './category/category.module';
 import { CartModule } from './cart/cart.module';
+import { CartItemModule } from './cart-item/cart-item.module';
+import { OrderItemModule } from './order-item/order-item.module';
+import { UserProductModule } from './user-product/user-product.module';
 
 
 @Module({
@@ -31,6 +34,9 @@ import { CartModule } from './cart/cart.module';
     ProductModule,
     CategoryModule,
     CartModule,
+    CartItemModule,
+    OrderItemModule,
+    UserProductModule,
   ],
   controllers: [AppController],
   providers: [AppService],

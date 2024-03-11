@@ -1,5 +1,5 @@
 import { Entity, Column, ManyToOne, JoinColumn } from 'typeorm';
-import { ProductEntity } from './product.entity';
+import { ProductEntity } from '../../product/entities/product.entity';
 import { UserEntity } from 'src/users/entities/user.entity';
 
 @Entity('user_product')

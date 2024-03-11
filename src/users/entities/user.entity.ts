@@ -1,4 +1,6 @@
+import { CartItemEntity } from "src/cart/entities/cart-item.entity";
 import { CartEntity } from "src/cart/entities/cart.entity";
+import { OrderItemEntity } from "src/order/entities/order-item.entity";
 import { OrderEntity } from "src/order/entities/order.entity";
 import { ProductEntity } from "src/product/entities/product.entity";
 import { Roles } from "src/users/utility/user.enum";
@@ -26,13 +28,21 @@ export class UserEntity {
     })
     roles: Roles;
 
-    @ManyToMany((_type) => ProductEntity, (product) => product.users)
-    @JoinTable()
-    products: ProductEntity[];
-
-    @OneToMany((_type) => OrderEntity, (order) => order.user)
+    @OneToMany(() => OrderEntity, order => order.user)
     orders: OrderEntity[];
 
     @OneToMany(() => CartEntity, cart => cart.user)
     carts: CartEntity[];
+
+    @ManyToMany(() => ProductEntity, product => product.users)
+    @JoinTable()
+    products: ProductEntity[];
+
+    @OneToMany(() => OrderItemEntity, orderItem => orderItem.user)
+    orderItems: OrderItemEntity[];
+
+    @OneToMany(() => CartItemEntity, cartItem => cartItem.user)
+    cartItems: CartItemEntity[];
+
+
 }

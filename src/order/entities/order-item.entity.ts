@@ -9,15 +9,12 @@ export class OrderItemEntity {
   @Column({ type: 'integer', nullable: false })
   quantity: number;
 
-  @ManyToOne(() => ProductEntity, { nullable: false })
-  @JoinColumn({ name: 'product_id' })
+  @ManyToOne(() => ProductEntity, product => product.orderItems)
   product: ProductEntity;
 
-  @ManyToOne(() => UserEntity, { nullable: false })
-  @JoinColumn({ name: 'user_id' })
+  @ManyToOne(() => UserEntity, user => user.orderItems)
   user: UserEntity;
 
-  @ManyToOne(() => OrderEntity, { nullable: false })
-  @JoinColumn({ name: 'order_id' })
+  @ManyToOne(() => OrderEntity, order => order.orderItems)
   order: OrderEntity;
 }

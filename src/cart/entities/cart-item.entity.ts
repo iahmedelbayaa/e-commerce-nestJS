@@ -9,15 +9,12 @@ export class CartItemEntity {
   @Column({ type: 'integer', nullable: false })
   quantity: number;
 
-  @ManyToOne(() => ProductEntity, { nullable: false })
-  @JoinColumn({ name: 'product_id' })
+  @ManyToOne(() => ProductEntity, product => product.cartItems)
   product: ProductEntity;
 
-  @ManyToOne(() => UserEntity, { nullable: false })
-  @JoinColumn({ name: 'user_id' })
+  @ManyToOne(() => UserEntity, user => user.cartItems)
   user: UserEntity;
 
-  @ManyToOne(() => CartEntity, { nullable: false })
-  @JoinColumn({ name: 'cart_id' })
+  @ManyToOne(() => CartEntity, cart => cart.cartItems)
   cart: CartEntity;
 }

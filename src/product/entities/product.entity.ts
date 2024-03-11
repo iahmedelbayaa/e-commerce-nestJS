@@ -1,3 +1,4 @@
+import { OrderEntity } from "src/order/entities/order.entity";
 import { UserEntity } from "src/users/entities/user.entity";
 import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 
@@ -52,5 +53,10 @@ export class ProductEntity {
 
     @ManyToMany((_type) => UserEntity, (user) => user.products)
     users: UserEntity[];
+
+
+    @ManyToMany((_type) => OrderEntity, (order) => order.products)
+    orders: OrderEntity[];
+
 
 }

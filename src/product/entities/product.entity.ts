@@ -1,8 +1,6 @@
 import { CartItemEntity } from "src/cart-item/entities/cart-item.entity";
-import { CartEntity } from "src/cart/entities/cart.entity";
 import { CategoryEntity } from "src/category/entities/category.entity";
 import { OrderItemEntity } from "src/order-item/entities/order-item.entity";
-import { OrderEntity } from "src/order/entities/order.entity";
 import { UserEntity } from "src/users/entities/user.entity";
 import { Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 

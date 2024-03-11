@@ -2,7 +2,7 @@ import { ProductEntity } from "src/product/entities/product.entity";
 import { UserEntity } from "src/users/entities/user.entity";
 import { Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity()
+@Entity('order')
 export class OrderEntity {
     @PrimaryGeneratedColumn('uuid')
     id: string;

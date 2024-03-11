@@ -2,9 +2,9 @@ import { CartEntity } from "src/cart/entities/cart.entity";
 import { CategoryEntity } from "src/category/entities/category.entity";
 import { OrderEntity } from "src/order/entities/order.entity";
 import { UserEntity } from "src/users/entities/user.entity";
-import { Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity()
+@Entity('product')
 export class ProductEntity {
     @PrimaryGeneratedColumn('uuid')
     id: string;
@@ -50,6 +50,7 @@ export class ProductEntity {
     updatedAt: Date;
 
     @ManyToMany((_type) => UserEntity, (user) => user.products)
+    @JoinTable()
     users: UserEntity[];
 
 
@@ -60,7 +61,6 @@ export class ProductEntity {
     @ManyToMany((_type) => CartEntity, (cart) => cart.products)
     carts: CartEntity[];
 
-    // many to one with category
     @ManyToOne((_type) => CategoryEntity, (category) => category.products)
     category: CategoryEntity;
 }

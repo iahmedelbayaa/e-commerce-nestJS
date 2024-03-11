@@ -1,17 +1,23 @@
-import { ProductEntity } from "src/product/entities/product.entity";
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { ProductEntity } from 'src/product/entities/product.entity';
+import { UserEntity } from 'src/users/entities/user.entity';
+import { Entity, Column, ManyToMany, PrimaryGeneratedColumn, JoinTable, ManyToOne } from 'typeorm';
 
-@Entity()
+
+@Entity('cart')
 export class CartEntity {
-    @PrimaryGeneratedColumn('uuid')
-    id: string;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-    @Column()
-    createdAt: Date;
+  @Column({ default: () => 'CURRENT_TIMESTAMP' })
+  createdAt: Date;
 
-    @Column()
-    updatedAt: Date;
+  @Column({ default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
+  updatedAt: Date;
 
-    @ManyToMany((_type) => ProductEntity, (product) => product.carts)
-    products: ProductEntity[];
+  @ManyToMany(() => ProductEntity, product => product.carts)
+  @JoinTable() // This is necessary for ManyToMany relationships
+  products: ProductEntity[];
+
+  @ManyToOne(() => UserEntity, user => user.carts)
+  user: UserEntity;
 }

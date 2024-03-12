@@ -1,22 +1,28 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UseGuards , Logger} from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from './entities/user.entity';
 import { Repository } from 'typeorm';
+import { AuthGuard } from '@nestjs/passport';
 
 @Injectable()
+@UseGuards(AuthGuard())
 export class UsersService {
+  private readonly logger = new Logger(UsersService.name);
 
   constructor(
+
     @InjectRepository(UserEntity)
     private usersRepository: Repository<UserEntity>,
   ) {}
 
   
   createUser(createUserDto: CreateUserDto) {
+    this.logger.log('createUser');
     const newUser = this.usersRepository.create(createUserDto);
     return this.usersRepository.save(newUser);
+
   }
 
   findAll() {

@@ -7,7 +7,7 @@ import { Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGen
 @Entity('product')
 export class ProductEntity {
     @PrimaryGeneratedColumn('uuid')
-    id: string;
+    id: number;
 
     @Column()
     name: string;

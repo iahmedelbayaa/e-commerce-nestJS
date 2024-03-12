@@ -3,7 +3,6 @@ export class CreateProductDto {
     readonly description: string;
     readonly price: number;
     readonly stock: number;
-    readonly category: string;
     readonly image: string;
     readonly brand: string;
     readonly rating: number;

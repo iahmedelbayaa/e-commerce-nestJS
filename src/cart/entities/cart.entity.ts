@@ -6,7 +6,7 @@ import { CartItemEntity } from '../../cart-item/entities/cart-item.entity';
 @Entity('cart')
 export class CartEntity {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  id: number;
 
   @Column({ default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;

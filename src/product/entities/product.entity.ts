@@ -41,7 +41,7 @@ export class ProductEntity {
     user: string;
 
     @Column()
-    reviews: string[];
+    reviews: string;
 
     @Column()
     createdAt: Date;

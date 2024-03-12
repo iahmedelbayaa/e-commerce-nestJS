@@ -9,7 +9,7 @@ export class CreateProductDto {
     readonly numReviews: number;
     readonly countInStock: number;
     readonly user: string;
-    readonly reviews: string[];
+    readonly reviews: string;
     readonly createdAt: Date;
     readonly updatedAt: Date;
     

@@ -5,6 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from './entities/user.entity';
 import { Repository } from 'typeorm';
 import { AuthGuard } from '@nestjs/passport';
+import { ProductEntity } from 'src/product/entities/product.entity';
 
 @Injectable()
 @UseGuards(AuthGuard())
@@ -40,4 +41,8 @@ export class UsersService {
   remove(id: number) {
     return this.usersRepository.delete(id);
   }
+
+//   async getUserProducts(id: number, products : ProductEntity): Promise<UserEntity> {
+//     return this.usersRepository.findOne({where :{id , products}});
+//   }
 }

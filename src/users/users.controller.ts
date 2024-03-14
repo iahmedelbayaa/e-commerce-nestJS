@@ -2,6 +2,8 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe } from 
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { GetUser } from 'src/auth/get-user.decorator';
+import { ProductEntity } from 'src/product/entities/product.entity';
 
 @Controller('users')
 export class UsersController {
@@ -31,4 +33,9 @@ export class UsersController {
   remove(@Param('id') id: string) {
     return this.usersService.remove(+id);
   }
+
+//   @Get(':userId/products')
+//   async getUserProducts(@Param('userId' ) userId: string ,@GetUser() product : ProductEntity) {
+//     return this.usersService.getUserProducts(+userId, product);
+//   }
 }

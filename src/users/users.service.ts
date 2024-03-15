@@ -1,4 +1,4 @@
-import { Injectable, UseGuards , Logger} from '@nestjs/common';
+import { Injectable, UseGuards, Logger } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -16,9 +16,9 @@ export class UsersService {
 
     @InjectRepository(UserEntity)
     private usersRepository: Repository<UserEntity>,
-  ) {}
+  ) { }
 
-  
+
   createUser(createUserDto: CreateUserDto) {
     this.logger.log('createUser');
     const newUser = this.usersRepository.create(createUserDto);
@@ -31,7 +31,7 @@ export class UsersService {
   }
 
   findOne(username: string) {
-    return this.usersRepository.findOne({where :{username : username}});
+    return this.usersRepository.findOne({ where: { username: username } });
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
@@ -42,7 +42,7 @@ export class UsersService {
     return this.usersRepository.delete(id);
   }
 
-//   async getUserProducts(id: number, products : ProductEntity): Promise<UserEntity> {
-//     return this.usersRepository.findOne({where :{id , products}});
-//   }
+  async getUserProducts(id: number, products: ProductEntity): Promise<UserEntity> {
+    return this.usersRepository.findOne({ where: { id, products } });
+  }
 }

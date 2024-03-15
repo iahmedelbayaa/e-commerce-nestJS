@@ -2,10 +2,12 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe } from 
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { ProductEntity } from 'src/product/entities/product.entity';
+import { GetProduct } from 'src/auth/get-product.decoretor';
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(private readonly usersService: UsersService) { }
 
   @Post('signup')
   create(@Body() createUserDto: CreateUserDto) {
@@ -18,7 +20,7 @@ export class UsersController {
   }
 
   @Get(':id')
-  findOne(@Param('id' , ParseIntPipe) id: string) {
+  findOne(@Param('id', ParseIntPipe) id: string) {
     return this.usersService.findOne(id);
   }
 
@@ -30,5 +32,10 @@ export class UsersController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.usersService.remove(+id);
+  }
+
+  @Get(':userId/products')
+  async getUserProducts(@Param('userId') userId: string, @GetProduct() product: ProductEntity) {
+    return this.usersService.getUserProducts(+userId, product);
   }
 }

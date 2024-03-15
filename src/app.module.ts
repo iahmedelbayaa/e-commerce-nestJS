@@ -12,6 +12,7 @@ import { CartModule } from './cart/cart.module';
 import { CartItemModule } from './cart-item/cart-item.module';
 import { OrderItemModule } from './order-item/order-item.module';
 import { UserProductModule } from './user-product/user-product.module';
+import { PaypalModule } from './paypal/paypal.module';
 
 
 @Module({
@@ -40,6 +41,7 @@ import { UserProductModule } from './user-product/user-product.module';
     CartItemModule,
     OrderItemModule,
     UserProductModule,
+    PaypalModule,
   ],
   controllers: [AppController],
   providers: [AppService],

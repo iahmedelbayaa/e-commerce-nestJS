@@ -4,8 +4,10 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ProductEntity } from 'src/product/entities/product.entity';
 import { GetProduct } from 'src/auth/get-product.decoretor';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('users')
+@useGuards(AuthGuard())
 export class UsersController {
   constructor(private readonly usersService: UsersService) { }
 
@@ -39,3 +41,7 @@ export class UsersController {
     return this.usersService.getUserProducts(+userId, product);
   }
 }
+function useGuards(arg0: any): (target: typeof UsersController) => void | typeof UsersController {
+  throw new Error('Function not implemented.');
+}
+

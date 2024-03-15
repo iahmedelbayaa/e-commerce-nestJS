@@ -1,6 +1,6 @@
-import { CartItemEntity } from "src/cart-item/entities/cart-item.entity";
+// import { CartItemEntity } from "src/cart-item/entities/cart-item.entity";
 import { CartEntity } from "src/cart/entities/cart.entity";
-import { OrderItemEntity } from "src/order-item/entities/order-item.entity";
+// import { OrderItemEntity } from "src/order-item/entities/order-item.entity";
 import { OrderEntity } from "src/order/entities/order.entity";
 import { ProductEntity } from "src/product/entities/product.entity";
 import { Roles } from "src/users/utility/user.enum";
@@ -38,11 +38,11 @@ export class UserEntity {
     @JoinTable()
     products: ProductEntity[];
 
-    @OneToMany(() => OrderItemEntity, orderItem => orderItem.user)
-    orderItems: OrderItemEntity[];
+    // @OneToMany(() => OrderItemEntity, orderItem => orderItem.user)
+    // orderItems: OrderItemEntity[];
 
-    @OneToMany(() => CartItemEntity, cartItem => cartItem.user)
-    cartItems: CartItemEntity[];
+    // @OneToMany(() => CartItemEntity, cartItem => cartItem.user)
+    // cartItems: CartItemEntity[];
 
 
 }

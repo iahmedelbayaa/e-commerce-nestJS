@@ -9,10 +9,8 @@ import { OrderModule } from './order/order.module';
 import { ProductModule } from './product/product.module';
 import { CategoryModule } from './category/category.module';
 import { CartModule } from './cart/cart.module';
-import { CartItemModule } from './cart-item/cart-item.module';
-import { OrderItemModule } from './order-item/order-item.module';
-import { UserProductModule } from './user-product/user-product.module';
 import { PaypalModule } from './paypal/paypal.module';
+import { MailerModule } from './mailer/mailer.module';
 
 
 @Module({
@@ -38,10 +36,8 @@ import { PaypalModule } from './paypal/paypal.module';
     ProductModule,
     CategoryModule,
     CartModule,
-    CartItemModule,
-    OrderItemModule,
-    UserProductModule,
     PaypalModule,
+    MailerModule,
   ],
   controllers: [AppController],
   providers: [AppService],

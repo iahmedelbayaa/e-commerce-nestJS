@@ -58,4 +58,44 @@ export class AuthService {
         }
     }
 
+    async validateUser(username: string, password: string): Promise<UserEntity> {
+        const user = await this.userRepository.findOne({where :{username}});
+        if (user && (await bcrypt.compare(password, user.password))) {
+            return user;
+        }
+        return null;
+    }
+
+    async resetPasswordByEmail(email: string, password: string): Promise<UserEntity> {
+        const user = await this.userRepository.findOne({where :{email}});
+        if (user) {
+            const salt = await bcrypt.genSalt();
+            const hashedPassword = await bcrypt.hash(password, salt);
+            user.password = hashedPassword;
+            return this.userRepository.save(user);
+        }
+        return null;
+    }
+
+    async resetPasswordByUsername(username: string, password: string): Promise<UserEntity> {
+        const user = await this.userRepository.findOne({where :{username}});
+        if (user) {
+            const salt = await bcrypt.genSalt();
+            const hashedPassword = await bcrypt.hash(password, salt);
+            user.password = hashedPassword;
+            return this.userRepository.save(user);
+        }
+        return null;
+    }
+
+    // async resetPasswordBySendEmail(email: string): Promise<UserEntity> {
+    //     const user = await this.userRepository.findOne({where :{email}});
+    //     if (user) {
+    //         // send email
+    //         return user;
+    //     }
+    //     return null;
+    // }
+
+
 }

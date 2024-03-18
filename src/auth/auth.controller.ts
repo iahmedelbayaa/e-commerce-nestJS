@@ -16,4 +16,14 @@ export class AuthController {
     signIn(@Body() createUserDto: CreateUserDto):  Promise<{accessToken : string}> {
         return this.authService.signIn(createUserDto);
     }
+
+    @Post('resetPassword')
+    resetPassword(@Body() createUserDto: CreateUserDto): Promise<UserEntity> {
+        return this.authService.resetPasswordByEmail(createUserDto.email, createUserDto.password);
+    }
+
+    @Post('forgotPassword')
+    forgotPassword(@Body() createUserDto: CreateUserDto): Promise<UserEntity> {
+        return this.authService.resetPasswordByEmail(createUserDto.email, createUserDto.password);
+    }
 }

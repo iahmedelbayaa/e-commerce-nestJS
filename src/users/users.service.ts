@@ -45,4 +45,12 @@ export class UsersService {
   async getUserProducts(id: number, products: ProductEntity): Promise<UserEntity> {
     return this.usersRepository.findOne({ where: { id, products } });
   }
+
+  async getUserProductsById(id: number): Promise<UserEntity> {
+    return this.usersRepository.findOne({ where: { id }, relations: ['products'] });
+  }
+
+  getUserByEmail(email: string): Promise<UserEntity> {
+    return this.usersRepository.findOne({ where: { email } });
+  }
 }

@@ -37,18 +37,22 @@ Before you begin, ensure you have the following installed:
    Create a `.env` file in the root of the project and configure the following variables:
 
    ```env
-   # Database
-   DATABASE_HOST=localhost
-   DATABASE_PORT=5432
-   DATABASE_USERNAME=postgres
-   DATABASE_PASSWORD=your_password
-   DATABASE_NAME=e_commerce
-
-   # JWT Secret
-   JWT_SECRET=your_jwt_secret
-
-   # Port
-   PORT=3000
+   PORT = 3000
+   POSTGRES_USER = ''
+   POSTGRES_PASSWORD = ''
+   POSTGRES_DB = ''
+   POSTGRES_HOST = ''
+   POSTGRES_PORT = 5432
+   JWT_SECRET = ''
+   PAYPAL_MODE = ''
+   PAYPAL_CLIENT_ID = ''
+   PAYPAL_CLIENT_SECRET = ''
+   MAIL_HOST = ''
+   MAIL_PORT = ''
+   MAIL_USER = ''
+   MAIL_PASSWORD = ''
+   MAIL_FROM = ''
+   APP_NAME = ''
    ```
 
 5. Start PostgreSQL using Docker Compose:

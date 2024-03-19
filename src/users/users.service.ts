@@ -6,6 +6,7 @@ import { UserEntity } from './entities/user.entity';
 import { Repository } from 'typeorm';
 import { AuthGuard } from '@nestjs/passport';
 import { ProductEntity } from 'src/product/entities/product.entity';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 @UseGuards(AuthGuard())
@@ -53,4 +54,21 @@ export class UsersService {
   getUserByEmail(email: string): Promise<UserEntity> {
     return this.usersRepository.findOne({ where: { email } });
   }
+
+  async genResetCode(email: string): Promise<UserEntity> {
+    const user = await this.usersRepository.findOne({ where: { email } });
+    user.resetCode = Math.random().toString(36).substring(2);
+    return this.usersRepository.save(user);
+  }
+
+  async verifyCodeAndUpdatePassword(email: string, resetCode: string, password: string): Promise<UserEntity> {
+    const user = await this.usersRepository.findOne({ where: { email } });
+    if (user.resetCode === resetCode) {
+      const salt = await bcrypt.genSalt();
+      user.password = await bcrypt.hash(password, salt);
+      user.resetCode = null;
+      return this.usersRepository.save(user);
+    }
+  }
 }
+

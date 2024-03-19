@@ -5,11 +5,13 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { ProductEntity } from 'src/product/entities/product.entity';
 import { GetProduct } from 'src/auth/get-product.decoretor';
 import { AuthGuard } from '@nestjs/passport';
+import { MailerService } from 'src/mailer/mailer.service';
 
 @Controller('users')
-@useGuards(AuthGuard())
 export class UsersController {
-  constructor(private readonly usersService: UsersService) { }
+  constructor(private readonly usersService: UsersService,
+    private readonly mailerService: MailerService
+  ) { }
 
   @Post('signup')
   create(@Body() createUserDto: CreateUserDto) {
@@ -40,8 +42,27 @@ export class UsersController {
   async getUserProducts(@Param('userId') userId: string, @GetProduct() product: ProductEntity) {
     return this.usersService.getUserProducts(+userId, product);
   }
-}
-function useGuards(arg0: any): (target: typeof UsersController) => void | typeof UsersController {
-  throw new Error('Function not implemented.');
-}
 
+  @Post('reset-password')
+  async resetPassword(@Body() createUserDto: CreateUserDto) {
+    const user = this.usersService.getUserByEmail(createUserDto.email);
+    if (!user) {
+      throw new Error('User not found');
+    }
+
+    const resetCode = await this.usersService.genResetCode(createUserDto.email);
+
+    await this.mailerService.sendResetPasswordEmail(createUserDto.email, resetCode);
+
+    return {
+      message: 'Reset code sent to email'
+    }
+  }
+
+  @Post('verify-code')
+  async verifyCode(@Body() createUserDto: CreateUserDto) {
+    const { email, resetCode, password } = createUserDto;
+    return this.usersService.verifyCodeAndUpdatePassword(email, resetCode, password);
+  }
+
+}

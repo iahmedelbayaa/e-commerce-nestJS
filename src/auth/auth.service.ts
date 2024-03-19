@@ -88,14 +88,16 @@ export class AuthService {
         return null;
     }
 
-    // async resetPasswordBySendEmail(email: string): Promise<UserEntity> {
-    //     const user = await this.userRepository.findOne({where :{email}});
-    //     if (user) {
-    //         // send email
-    //         return user;
-    //     }
-    //     return null;
-    // }
+    
+    //get user by email 
+    //check if user in db
+    //generate code and store it in db
+    //send email with code by nodemailer
+    //check if code is valid
+    //update password
+    //return user
+
+
 
 
 }

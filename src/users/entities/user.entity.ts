@@ -28,6 +28,9 @@ export class UserEntity {
     })
     roles: Roles;
 
+    @Column()
+    resetCode?: string; 
+
     @OneToMany(() => OrderEntity, order => order.user)
     orders: OrderEntity[];
 
@@ -38,11 +41,7 @@ export class UserEntity {
     @JoinTable()
     products: ProductEntity[];
 
-    // @OneToMany(() => OrderItemEntity, orderItem => orderItem.user)
-    // orderItems: OrderItemEntity[];
-
-    // @OneToMany(() => CartItemEntity, cartItem => cartItem.user)
-    // cartItems: CartItemEntity[];
+    
 
 
 }

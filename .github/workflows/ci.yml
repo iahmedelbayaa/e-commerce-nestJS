@@ -1,4 +1,4 @@
-name: CICD Pipeline/Workflow
+name: CI Pipeline/Workflow
 
 on:
   push:
@@ -17,6 +17,6 @@ jobs:
       - name: Login to dockerhub
         run: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_TOKEN
       - name: Build docker image
-        run: docker build -t $DOCKERHUB_USERNAME/chat-app-image:${{ github.sha }} .
+        run: docker build -t $DOCKERHUB_USERNAME/e-commerce-NestJS-image:${{ github.sha }} .
       - name: Push docker image to dockerhub
-        run: docker push $DOCKERHUB_USERNAME/chat-app-image:${{ github.sha }}
+        run: docker push $DOCKERHUB_USERNAME/e-commerce-NestJS-image:${{ github.sha }}

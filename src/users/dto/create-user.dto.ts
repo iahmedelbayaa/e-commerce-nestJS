@@ -21,5 +21,5 @@ export class CreateUserDto {
     @IsString({ each: true })
     readonly roles: Roles;
 
-    
+    readonly resetCode?: string;
 }

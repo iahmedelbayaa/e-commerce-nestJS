@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import nodemailer from 'nodemailer';
 import { MailDto } from './mail.interface';
+import { CreateUserDto } from 'src/users/dto/create-user.dto';
 
 @Injectable()
 export class MailerService {
@@ -44,6 +45,23 @@ export class MailerService {
             return false;
         }
 
+    }
+
+    async sendResetPasswordEmail(email: string, resetCode: CreateUserDto) {
+        const html = `
+            <h1>Reset Password</h1>
+            <p>Click <a href="${this.configService.get('APP_URL')}/reset-password?email=${email}&resetCode=${resetCode}">here</a> to reset your password</p>
+        `;
+        const mailDto : MailDto = {
+            from: {
+                name: this.configService.get('APP_NAME'),
+                address: this.configService.get('MAIL_FROM')
+            },
+            recipients: [{name: 'User', address: email}],
+            subject: 'Reset Password',
+            html
+        }
+        return this.sendMail(mailDto);
     }
 
     
